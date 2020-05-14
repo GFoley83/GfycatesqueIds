@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.1</TargetFramework>
+    <Version>1.0.0</Version>
+    <Authors>GFoley83</Authors>
+    <Company />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/GFoley83/GfycatesqueIds</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/GFoley83/GfycatesqueIds</RepositoryUrl>
+    <Copyright>https://opensource.org/licenses/MIT</Copyright>
+    <Description>Create human-readable Ids, just like Gfycat. Use the default format of VerbAdjectiveAnimal or a custom format of your choosing.
+
+Example Usage
+
+https://dotnetfiddle.net/4KGjWQ
+
+// Create Id in the default form VerbAdjectiveAnimal
+var id = GfycatesceIds.Generate(); // Id == "ExaltedDifficultAntelope"
+
+// Create classic Gfycat Id in the form AdjectiveAdjectiveAnimal
+var id = GfycatesceIds.Generate(GfycatesceIds.GfycatPattern); // Id == "CalmFriendlyLion"
+
+// Create Id in a custom form and length
+var id = GfycatesceIds.Generate(new[]
+    {
+        WordType.Verb, WordType.Adjective, WordType.Verb, WordType.Verb, WordType.Animal
+    }); // Id == "WalkHorribleConfessQuestionZebra"</Description>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>Gfycat, Unique, Ids, Human, Readable, Human-readable, Adjective, Verb, Animal</PackageTags>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
