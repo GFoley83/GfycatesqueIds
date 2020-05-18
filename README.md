@@ -1,4 +1,6 @@
-# GfycatesqueIds
+# GfycatesqueIds    
+
+![.NET Core](https://github.com/GFoley83/GfycatesqueIds/workflows/.NET%20Core/badge.svg?branch=master)
 
 Create human-readable Ids, just like Gfycat. Use the default format of _VerbAdjectiveAnimal_ or a custom format of your choosing.
 

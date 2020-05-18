@@ -25,11 +25,16 @@ var id = GfycatesceIds.Generate(GfycatesceIds.GfycatPattern); // Id == "CalmFrie
 var id = GfycatesceIds.Generate(new[]
     {
         WordType.Verb, WordType.Adjective, WordType.Verb, WordType.Verb, WordType.Animal
-    }); // Id == "WalkHorribleConfessQuestionZebra"</Description>
+    }); // Id == "WalkHorribleConfessQuestionZebra"
+    </Description>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>Gfycat, Unique, Ids, Human, Readable, Human-readable, Adjective, Verb, Animal</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
 
   <ItemGroup>

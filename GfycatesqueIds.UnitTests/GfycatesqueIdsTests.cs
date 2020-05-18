@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -15,6 +16,15 @@ namespace GfycatesqueIds.UnitTests
         }
 
         [Test]
+        public void ShouldHaveWordTypeArraysForAdjectivesVerbsAndAnimals()
+        {
+            Assert.IsTrue(Words.Adjectives.Length > 0);
+            Assert.IsTrue(Words.Verbs.Length > 0);
+            Assert.IsTrue(Words.Animals.Length > 0);
+            Console.WriteLine($"Adjectives: {Words.Adjectives.Length} Verbs: {Words.Verbs.Length} Animals: {Words.Animals.Length}");
+        }
+
+        [Test]
         public void ShouldGenerateAnIdWithExpectedWordCountByDefault()
         {
             var id = GfycatesceIds.Generate();
@@ -28,7 +38,7 @@ namespace GfycatesqueIds.UnitTests
             var id = GfycatesceIds.Generate();
             var words = SplitCamelCase(id);
 
-            for (int i = 0; i < GfycatesceIds.DefaultPattern.Length; i++)
+            for (var i = 0; i < GfycatesceIds.DefaultPattern.Length; i++)
             {
                 Assert.IsTrue(Words.WordIsInWordList(words[i], GfycatesceIds.DefaultPattern[i]));
             }
@@ -40,7 +50,7 @@ namespace GfycatesqueIds.UnitTests
             var id = GfycatesceIds.Generate(GfycatesceIds.GfycatPattern);
             var words = SplitCamelCase(id);
 
-            for (int i = 0; i < GfycatesceIds.GfycatPattern.Length; i++)
+            for (var i = 0; i < GfycatesceIds.GfycatPattern.Length; i++)
             {
                 Assert.IsTrue(Words.WordIsInWordList(words[i], GfycatesceIds.GfycatPattern[i]));
             }
@@ -54,25 +64,36 @@ namespace GfycatesqueIds.UnitTests
             var id = GfycatesceIds.Generate(pattern);
             var words = SplitCamelCase(id);
 
-            for (int i = 0; i < pattern.Length; i++)
+            for (var i = 0; i < pattern.Length; i++)
             {
                 Assert.IsTrue(Words.WordIsInWordList(words[i], pattern[i]));
             }
         }
 
         [Test]
-        [TestCase(500)]
+        [TestCase(1000000)]
         public void ShouldGenerateUniqueIds(int numIdsToGenerate)
         {
+            static string GenerateIdAndCheckForDupes(ICollection<string> hashSet)
+            {
+                var id = GfycatesceIds.Generate();
+                if (hashSet.Contains(id))
+                {
+                    id = GenerateIdAndCheckForDupes(hashSet);
+                }
+
+                return id;
+            }
+
             var ids = new HashSet<string>();
             for (var i = 0; i < numIdsToGenerate; i++)
             {
-                ids.Add(GfycatesceIds.Generate());
+                ids.Add(GenerateIdAndCheckForDupes(ids));
             }
 
             Assert.AreEqual(ids.Count, numIdsToGenerate);
         }
 
-        private string[] SplitCamelCase(string source) => Regex.Split(source, @"(?<!^)(?=[A-Z])");
+        private static string[] SplitCamelCase(string source) => Regex.Split(source, "(?<!^)(?=[A-Z])");
     }
 }
